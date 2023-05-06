@@ -7,8 +7,7 @@ services:
         command: >
                 bash -c "
                     pip install -r requirements.txt &&
-                    python config/wait_for_db.py &&
-                    python manage.py runserver 0.0.0.0:8000
+                    python manage.py runserver --settings config.env.dev 0.0.0.0:8000
                 "
         working_dir: /code
         ports: 
@@ -16,14 +15,18 @@ services:
         volumes:
             - .:/code
         depends_on:
-            - db
+            db:
+                condition: service_healthy
     db:
         container_name: djst_mysql
         image: mysql:latest
+        healthcheck:
+            test: ["CMD", "mysqladmin" ,"ping", "-h", "localhost", "-u", "root", "-p$DB_PASSWORD"]
+            timeout: 20s
+            retries: 10
         restart: always
         environment: 
             MYSQL_DATABASE: $DB_NAME
-
             MYSQL_PASSWORD: $DB_PASSWORD
             MYSQL_ROOT_PASSWORD: $DB_ROOT_PASSWORD
             MYSQL_TCP_PORT: 3306

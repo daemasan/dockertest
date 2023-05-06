@@ -10,18 +10,20 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 import os
-from .local_settings import SECRET_KEY_LS, DB_NAME, DB_USER, DB_PASSWORD
+import environ
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
-
+env = environ.Env(DEBUG=(bool, True))
+env_file = os.path.join(BASE_DIR, ".env")
+env.read_env(env_file)
+print(env("DB_NAME"))
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = SECRET_KEY_LS
+SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
@@ -72,13 +74,13 @@ WSGI_APPLICATION = 'config.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
-
+#HOSTはdocker-compose使う場合はサービス名を記述
 DATABASES = {
     'default': {
         'ENGINE': "django.db.backends.mysql",
-        'NAME': DB_NAME,
-        'USER': DB_USER,
-        "PASSWORD": DB_PASSWORD,
+        'NAME': env("DB_NAME"),
+        'USER': env("DB_USER"),
+        "PASSWORD":  env("DB_PASSWORD"),
         'HOST': "db",
         "PORT": "3306"
     }

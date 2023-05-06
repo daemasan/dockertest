@@ -3,10 +3,10 @@ import MySQLdb
 from time import sleep
 from pathlib import Path
 
-os.chdir(Path(__file__).parent)
-from local_settings import DB_NAME, DB_USER, DB_PASSWORD
 
 
+from settings import env
+print(env("DB_NAME"))
 count_to_try = 0
 LIMIT_OF_COUNT = 20 # 値は必要に応じて調整
 
@@ -18,11 +18,11 @@ def check_connection(count, limit):
     try:
         conn = MySQLdb.connect(
             unix_socket = "/var/run/mysqld/mysqld.sock",
-            user=DB_USER,
-            passwd=DB_PASSWORD,
+            user=env("DB_USER"),
+            passwd=env("DB_PASSWORD"),
             host="db",
             port=3306,
-            db=DB_NAME,
+            db=env("DB_NAME"),
         )
     except MySQLdb._exceptions.OperationalError as e:
         count += 1
