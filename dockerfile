@@ -11,3 +11,6 @@ RUN pip install -r requirements.txt
 COPY . /code/
 
 EXPOSE 8000
+
+CMD exec gunicorn --bind 0.0.0.0:$PORT --workers 1 --threads 8 --timeout 0 config.wsgi:application
+CMD python manage.py runserver --settings config.env.dev 0.0.0.0:8080
