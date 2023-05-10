@@ -154,14 +154,34 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-#GS_BUCKET_NAME = env("GS_BUCKET_NAME")
+
+#staticファイル環境に寄って変える必要あり
+GS_BUCKET_NAME = env("GS_BUCKET_NAME")
 STATIC_URL = "/static/"
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
-#DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-#STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-#GS_DEFAULT_ACL = "publicRead"
+#STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
+DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+GS_DEFAULT_ACL = "publicRead"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+###### ↓認証系の設定 #####
+AUTHENTICATION_BACKENDS = (
+   'django.contrib.auth.backends.ModelBackend',
+   'allauth.account.auth_backends.AuthenticationBackend',  
+)
+
+ACCOUNT_AUTHENTICATION_METHOD = 'username'
+ACCOUNT_USERNAME_REQUIRED = True 
+
+ACCOUNT_EMAIL_VERIFICATION = 'none'
+ACCOUNT_EMAIL_REQUIRED = True 
+
+SITE_ID = 1 
+
+LOGIN_REDIRECT_URL = 'home'          
+ACCOUNT_LOGOUT_REDIRECT_URL = '/accounts/login/'
