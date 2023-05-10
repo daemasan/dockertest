@@ -31,7 +31,6 @@ except google.auth.exceptions.DefaultCredentialsError:
 print(os.environ.get("GOOGLE_CLOUD_PROJECT"))
 if os.path.isfile(env_file):
     # Use a local secret file, if provided
-    print('envfile読み込み')
     env.read_env(env_file)
 # [START_EXCLUDE]
 elif os.getenv("TRAMPOLINE_CI", None):
@@ -77,6 +76,10 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'snsapp.apps.SnsappConfig',
+    'allauth',
+    'allauth.account', 
+    'allauth.socialaccount', 
     'storages',
 ]
 
@@ -95,7 +98,7 @@ ROOT_URLCONF = 'config.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -139,9 +142,9 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'ja'
 
-TIME_ZONE = 'UTC'
+TIME_ZONE =  'Asia/Tokyo'
 
 USE_I18N = True
 
@@ -151,11 +154,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
-GS_BUCKET_NAME = env("GS_BUCKET_NAME")
+#GS_BUCKET_NAME = env("GS_BUCKET_NAME")
 STATIC_URL = "/static/"
-DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
-GS_DEFAULT_ACL = "publicRead"
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
+#DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+#STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
+#GS_DEFAULT_ACL = "publicRead"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field

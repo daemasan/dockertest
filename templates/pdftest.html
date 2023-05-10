@@ -1,0 +1,29 @@
+
+{% load static %}
+
+<!doctype html>
+<html lang="ja">
+  <head>
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+      <script src="{% static 'js/base.js' %}"></script>
+  
+    <title>SNSアプリサンプル</title>
+  </head>
+
+<body>
+  <h1>Hello world!!!</h1>
+  <h3>{{name}}</h3>
+  <p class="text-body">こんにちは！！！</p>
+  <p class="text-danger">こんにちは！！！</p>
+  <p class="text-primary" >テキストプライマリー</p>
+  <p class="fst-italic">イタリック</p>
+  <strong class="strong">ボールド</strong>
+
+  <hr>
+  <img src="{% static 'img/model.png' %}" height="700px" class="d-block  mx-auto">
+</body>
+</html>
+
+
