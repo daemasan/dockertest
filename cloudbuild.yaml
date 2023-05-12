@@ -21,8 +21,6 @@ steps:
       "python",
       "manage.py",
       "migrate",
-      "--settings",
-      "config.env.dev"
     ]
 - id: "collect static"
   name: "gcr.io/google-appengine/exec-wrapper"
