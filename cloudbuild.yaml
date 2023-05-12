@@ -38,6 +38,8 @@ steps:
       "python",
       "manage.py",
       "collectstatic",
+      "--verbosity",
+      "2",
       "--noinput",
     ]
 substitutions:

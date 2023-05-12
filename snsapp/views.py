@@ -9,8 +9,6 @@ from .models import Post, Connection
 
 from django.http import HttpResponse
 
-from django.template.loader import get_template
-
 class Home(LoginRequiredMixin, ListView):
     """HOMEページで、自分以外のユーザー投稿をリスト表示"""
     model = Post

@@ -28,7 +28,6 @@ try:
 except google.auth.exceptions.DefaultCredentialsError:
     pass
 
-print(os.environ.get("GOOGLE_CLOUD_PROJECT"))
 if os.path.isfile(env_file):
     # Use a local secret file, if provided
     env.read_env(env_file)
@@ -59,6 +58,7 @@ DEBUG = env("DEBUG")
 
 CLOUDRUN_SERVICE_URL = env("CLOUDRUN_SERVICE_URL", default=None)
 if CLOUDRUN_SERVICE_URL:
+    print(CLOUDRUN_SERVICE_URL)
     ALLOWED_HOSTS = [urlparse(CLOUDRUN_SERVICE_URL).netloc]
     CSRF_TRUSTED_ORIGINS = [CLOUDRUN_SERVICE_URL]
     SECURE_SSL_REDIRECT = True
@@ -119,7 +119,6 @@ WSGI_APPLICATION = 'config.wsgi.application'
 #HOSTはdocker-compose使う場合はサービス名を記述
 DATABASES = {"default": env.db()}
 
-
 # Password validation
 # https://docs.djangoproject.com/en/4.2/ref/settings/#auth-password-validators
 
@@ -157,8 +156,8 @@ USE_TZ = True
 
 #staticファイル環境に寄って変える必要あり
 GS_BUCKET_NAME = env("GS_BUCKET_NAME")
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 STATIC_URL = "/static/"
-#STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 DEFAULT_FILE_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 STATICFILES_STORAGE = "storages.backends.gcloud.GoogleCloudStorage"
 GS_DEFAULT_ACL = "publicRead"
