@@ -1,3 +1,4 @@
 cloudmigrate.yaml
 .gitignore
 venv
+.gcloudignore

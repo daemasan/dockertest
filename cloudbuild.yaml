@@ -58,7 +58,6 @@ substitutions:
   _INSTANCE_NAME:  dockertest
   _SECRET_SETTINGS_NAME: secret
   _SETTINGS_MODULE: config.env.prod
-  _SERVICE_NAME: polls-service
 
 images:
 - '${_LOCATION}-docker.pkg.dev/$PROJECT_ID/${_REPOSITORY}/${_IMAGE}'

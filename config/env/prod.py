@@ -1,5 +1,8 @@
 from config.settings import *
 import io
+import google.auth
+from urllib.parse import urlparse
+from google.cloud import secretmanager
 
 DEBUG = True
 # Attempt to load the Project ID into the environment, safely failing on error.

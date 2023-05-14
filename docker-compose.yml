@@ -7,9 +7,11 @@ services:
         command: >
                 bash -c "
                     pip install -r requirements.txt &&
-                    python manage.py migrate
-                    python manage.py runserver --settings config.env.dev 0.0.0.0:8000
+                    python manage.py migrate --settings config.env.doc
+                    python manage.py runserver --settings config.env.doc 0.0.0.0:8000
                 "
+        environment: 
+            _SETTINGS_MODULE: config.env.doc
         working_dir: /code
         ports: 
             - 127.0.0.1:8000:8000
