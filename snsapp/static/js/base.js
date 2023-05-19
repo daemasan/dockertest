@@ -1,5 +1,4 @@
 document.addEventListener('DOMContentLoaded', function(){
-    console.log('うごいてる')
     const getCookie = (name) => {
         if (document.cookie && document.cookie !== '') {
             for (const cookie of document.cookie.split(';')) {
@@ -12,6 +11,7 @@ document.addEventListener('DOMContentLoaded', function(){
     };
     const csrftoken = getCookie('csrftoken');
     const test = document.getElementById('test');
+        /*
     const topdf = document.getElementById('topdf');
 
     topdf.addEventListener('click',(event) => {
@@ -32,5 +32,17 @@ document.addEventListener('DOMContentLoaded', function(){
             console.log(myBlob)
             window.open(objectURL)
         })
+    }
+    */
+
+    const detaillink = document.getElementsByClassName('detaillink');
+    for(let i = 0; i < detaillink.length; i++) {
+        detaillink[i].addEventListener('click', (event) => {
+            event.preventDefault;
+            testlink()
+        });
+    }
+    async function testlink(){
+        open('http://localhost:8000/')
     }
 });

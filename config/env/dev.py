@@ -3,6 +3,7 @@ print('開発環境')
 env.read_env(env_file)
 DEBUG = True
 SECRET_KEY = env("SECRET_KEY")
+STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'), )
 ALLOWED_HOSTS = ["*"]
 #DATABASES = {"default": env.db()}
 DATABASES = {
