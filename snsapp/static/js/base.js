@@ -43,6 +43,6 @@ document.addEventListener('DOMContentLoaded', function(){
         });
     }
     async function testlink(){
-        open('http://localhost:8000/')
+        open('https://djstdjango-4xwr5xhl5q-an.a.run.app/')
     }
 });
