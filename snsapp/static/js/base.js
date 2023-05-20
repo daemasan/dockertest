@@ -45,6 +45,6 @@ document.addEventListener('DOMContentLoaded', function(){
     }
     async function testlink(){
         console.log('open')
-        open('https://djstdjango-4xwr5xhl5q-an.a.run.app/')
+        open()
     }
 });
