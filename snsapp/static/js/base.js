@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function(){
         });
     }
     async function testlink(){
-        console.log('open3')
+        console.log('open4')
         window.open() 
     }
 });
