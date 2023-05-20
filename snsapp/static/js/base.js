@@ -45,6 +45,6 @@ document.addEventListener('DOMContentLoaded', function(){
     }
     async function testlink(){
         console.log('open3')
-        open()
+        window.open() 
     }
 });
