@@ -34,7 +34,7 @@ document.addEventListener('DOMContentLoaded', function(){
         })
     }
     */
-    console.log('open')
+    console.log('open3')
     const detaillink = document.getElementsByClassName('detaillink');
     for(let i = 0; i < detaillink.length; i++) {
         detaillink[i].addEventListener('click', (event) => {
@@ -44,7 +44,7 @@ document.addEventListener('DOMContentLoaded', function(){
         });
     }
     async function testlink(){
-        console.log('open')
+        console.log('open3')
         open()
     }
 });
