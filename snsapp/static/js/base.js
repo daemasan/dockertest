@@ -34,16 +34,17 @@ document.addEventListener('DOMContentLoaded', function(){
         })
     }
     */
-
+    console.log('open')
     const detaillink = document.getElementsByClassName('detaillink');
     for(let i = 0; i < detaillink.length; i++) {
         detaillink[i].addEventListener('click', (event) => {
             event.preventDefault;
             testlink()
+   
         });
     }
     async function testlink(){
-        
+        console.log('open')
         open('https://djstdjango-4xwr5xhl5q-an.a.run.app/')
     }
 });
